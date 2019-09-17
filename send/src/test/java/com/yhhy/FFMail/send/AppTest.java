@@ -1,4 +1,4 @@
-package com.yhhy.FFMail.FFMail;
+package com.yhhy.FFMail.send;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

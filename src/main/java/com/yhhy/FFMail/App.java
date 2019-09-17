@@ -1,4 +1,4 @@
-package com.yhhy.FFMail.FFMail;
+package com.yhhy.FFMail;
 
 /**
  * Hello world!
