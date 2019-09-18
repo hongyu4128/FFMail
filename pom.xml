@@ -116,5 +116,6 @@
   <modules>
     <module>recv</module>
     <module>send</module>
+    <module>setting</module>
   </modules>
 </project>
