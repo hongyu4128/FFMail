@@ -18,8 +18,8 @@ public class UserSettingServiceImpl implements UserSettingService {
   @Override
   public void saveUser(User u) throws UserNotExistsException {
     Boolean isExist = this.userIsExist(u);
-    if (!isExist) {
-      throw new UserNotExistsException();
+    if (isExist) {
+      throw new UserNotExistsException(isExist);
     }
     userSettingDao.saveUserInfo(u);
   }
@@ -32,7 +32,7 @@ public class UserSettingServiceImpl implements UserSettingService {
   public String login(User u) throws UserNotExistsException {
     Boolean isExist = this.userIsExist(u);
     if (!isExist) {
-      throw new UserNotExistsException();
+      throw new UserNotExistsException(isExist);
     }
     try {
       if (this.checkPassword(u)) {

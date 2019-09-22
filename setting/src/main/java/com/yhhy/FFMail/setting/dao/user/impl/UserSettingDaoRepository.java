@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,7 @@ import com.yhhy.FFMail.setting.domain.user.User;
 
 @Repository("UserSettingDao")
 public class UserSettingDaoRepository implements UserSettingDao {
+  private Logger log = LoggerFactory.getLogger(UserSettingDaoRepository.class);
 
   @Autowired
   @Resource
@@ -39,9 +42,18 @@ public class UserSettingDaoRepository implements UserSettingDao {
   @Override
   public int checkPassword(User u) {
     // TODO: 这个sql不太对 明天再改!
-    String sql = "select USER_ID from T_SET_USER_INFO t where (t.USER_NAME = ? or t.TELEPHONE = ? and t.PASSWORD = ?)";
-    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
-    return 0;
+    String sql = "select USER_ID from T_SET_USER_INFO t where (t.USER_NAME = ? or t.TELEPHONE = ?) and t.PASSWORD = ?";
+    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,
+        new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
+
+    list.forEach(item -> {
+      String t = String.valueOf(item.get("USER_ID"));
+      log.debug(t);
+    });
+    if (list.isEmpty() == true)
+      return 0;
+    else
+      return 1;
   }
 
 }

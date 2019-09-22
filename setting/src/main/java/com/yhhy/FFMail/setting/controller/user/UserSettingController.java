@@ -5,13 +5,13 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.alibaba.fastjson.JSONObject;
 import com.yhhy.FFMail.setting.common.bo.exceptions.user.UserNotExistsException;
 import com.yhhy.FFMail.setting.common.bo.exceptions.user.UserWrongPasswordException;
@@ -31,19 +31,19 @@ public class UserSettingController {
   // localhost:9092/setting/saveUser?user=ABC&password=BCD
   @ResponseBody
   @RequestMapping(value = "saveUser", method = RequestMethod.GET)
-  public JSONObject saveUser(@RequestParam String userName, @RequestParam String telephone,
-      @RequestParam String password) {
+//  public JSONObject saveUser(@RequestParam @NotEmpty @Size(min = 6, max = 10, message = "用户名需要为6-10位") String userName,
+//      @RequestParam String telephone, @RequestParam String password) {
+  public JSONObject saveUser(@RequestBody @Valid User user) {
     try {
-      @Valid
-      User user = new User(userName, telephone, password);
+//      @Valid
+//      User user = new User(userName, telephone, password);
+//      String validate = EntityUtil.validateModel(user);
       userSettingService.saveUser(user);
       return JsonInterfaceTool.succeed("恭喜您注册成功~~~");
     } catch (UserNotExistsException e) {
-      e.printStackTrace();
       log.error(e.getMsg());
       return JsonInterfaceTool.fail(e.getMsg());
     } catch (Exception e) {
-      e.printStackTrace();
       log.error(e.getMessage());
       return JsonInterfaceTool.fail("注册失败啦,我们正在处理哦~~~~~~");
     }
