@@ -4,7 +4,7 @@ import com.yhhy.FFMail.setting.domain.user.EmailInfo;
 
 public interface UserEmailDao {
   
-  public void SaveEmail(EmailInfo e);
+  public void saveEmail(EmailInfo email);
   
-  public Boolean EmailIsExist(EmailInfo e);
+  public Boolean queryEmailIsExist(EmailInfo email);
 }

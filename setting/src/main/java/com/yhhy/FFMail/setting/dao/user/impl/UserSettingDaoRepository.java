@@ -39,9 +39,11 @@ public class UserSettingDaoRepository implements UserSettingDao {
     jdbcTemplate.update(sql, new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
   }
 
+  /**
+   * 登录时验证密码正确性的函数
+   */
   @Override
   public int checkPassword(User u) {
-    // TODO: 这个sql不太对 明天再改!
     String sql = "select USER_ID from T_SET_USER_INFO t where (t.USER_NAME = ? or t.TELEPHONE = ?) and t.PASSWORD = ?";
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,
         new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
