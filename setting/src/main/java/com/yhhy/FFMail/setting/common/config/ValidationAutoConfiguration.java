@@ -6,8 +6,8 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
 
 @Configuration
 public class ValidationAutoConfiguration {
-  @Bean
-  public MethodValidationPostProcessor methodValidationPostProcessor(){
-   return new MethodValidationPostProcessor();
-  }
+    @Bean
+    public MethodValidationPostProcessor methodValidationPostProcessor() {
+        return new MethodValidationPostProcessor();
+    }
 }

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
-import com.yhhy.FFMail.recv.common.SpringContext;
+import com.yhhy.FFMailBasic.basic.common.SpringContext;
 
 /**
  * Hello world!
