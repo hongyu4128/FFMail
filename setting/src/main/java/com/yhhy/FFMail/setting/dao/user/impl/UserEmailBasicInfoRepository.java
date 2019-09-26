@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.yhhy.FFMail.setting.dao.user.UserEmailBasicInfoDao;
 import com.yhhy.FFMail.setting.domain.user.UserEmailBasicInfo;
 
-@Repository("UserEmailDao")
+@Repository("UserEmailBasicInfoDao")
 public class UserEmailBasicInfoRepository implements UserEmailBasicInfoDao {
 
   @Autowired

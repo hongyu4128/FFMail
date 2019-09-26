@@ -25,7 +25,7 @@ import com.yhhy.FFMail.setting.service.user.recvEmailService;
  * @author Poppy
  *
  */
-@Service("recvEmailServiceImp")
+@Service("recvEmailService")
 public class recvEmailServiceImp implements recvEmailService{
 	@Autowired
 	public RecvEmailInfo recvEmailInfo;

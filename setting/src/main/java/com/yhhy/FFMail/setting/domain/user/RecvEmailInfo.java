@@ -8,6 +8,10 @@ public class RecvEmailInfo {
 	private String emailSubject;
 	private String emailContent;
 	
+	public RecvEmailInfo() {
+		
+	}
+	
 	public RecvEmailInfo(String emailAddress, Address[] emailFrom, String emailSubject,String emailContent) {
 		this.emailAddress = emailAddress;
 		this.emailFrom = emailFrom;
