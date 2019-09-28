@@ -31,7 +31,7 @@ public class UserEmailBasicInfoController {
     private UserEmailBasicInfoService userEmailBasicInfoService;
 
     @ResponseBody
-    @RequestMapping(value = "saveUserEmail", method = RequestMethod.GET)
+    @RequestMapping(value = "saveUserEmail", method = RequestMethod.POST)
     public JSONObject saveUserEmail(@RequestBody UserEmailBasicInfo email) {
         try {
             userEmailBasicInfoService.saveEmailInfo(email);
