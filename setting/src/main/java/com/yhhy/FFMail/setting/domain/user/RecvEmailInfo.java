@@ -4,45 +4,51 @@ import javax.mail.Address;
 
 public class RecvEmailInfo {
 	private String emailAddress;
-	private Address[] emailFrom;
+	private String emailFrom;
 	private String emailSubject;
 	private String emailContent;
-	
+
 	public RecvEmailInfo() {
-		
+
 	}
-	
-	public RecvEmailInfo(String emailAddress, Address[] emailFrom, String emailSubject,String emailContent) {
+
+	public RecvEmailInfo(String emailAddress, String emailFrom, String emailSubject, String emailContent) {
 		this.emailAddress = emailAddress;
 		this.emailFrom = emailFrom;
 		this.emailSubject = emailSubject;
 		this.emailContent = emailContent;
 	}
-	
+
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	public Address[] getEmailFrom() {
+
+	public String getEmailFrom() {
 		return emailFrom;
 	}
-	public void setEmailFrom(Address[] from) {
-		this.emailFrom = from;
+
+	public void setEmailFrom(String address) {
+		this.emailFrom = address;
 	}
+
 	public String getEmailSubject() {
 		return emailSubject;
 	}
+
 	public void setEmailSubject(String emailSubject) {
 		this.emailSubject = emailSubject;
 	}
+
 	public String getEmailContent() {
 		return emailContent;
 	}
+
 	public void setEmailContent(String emailContent) {
 		this.emailContent = emailContent;
 	}
-	
-	
+
 }
