@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Address;
+import javax.mail.AuthenticationFailedException;
 import javax.mail.BodyPart;
 import javax.mail.Flags;
 import javax.mail.Folder;
@@ -42,14 +43,13 @@ public class RecvEmailServiceImp implements RecvEmailService {
 	RecvEmailInfoDao recvEmailInfoDao;
 
 	@Override
-	public void recvEmail(UserEmailBasicInfo email) {
+	public void recvEmail(UserEmailBasicInfo email) throws AuthenticationFailedException,NoSuchProviderException,MessagingException,IOException,Exception{
 		RecvEmailInfo recvEmailInfo = new RecvEmailInfo();
-		try {
 			RemoveCryptographyRestrictions.init();
 			// 连接邮件服务器的参数配置
 			Properties props = new Properties();
 			props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			props.setProperty("mail.imap.socketFactory.fallback", "false");
+			props.setProperty("mail.imajavap.socketFactory.fallback", "false");
 			// 设置传输协议和端口
 			props.setProperty("mail.transport.protocol", "imap");
 			props.setProperty("mail.imap.port", email.getRecvPort());
@@ -59,7 +59,6 @@ public class RecvEmailServiceImp implements RecvEmailService {
 			// 创建Session对象
 			Session session = Session.getInstance(props);
 			// 打印session session.setDebug(true);
-
 			Store store = session.getStore("imap");
 			// 连接imap服务器
 			store.connect(email.getRecvService(), email.getEmailAddress(), email.getEmailPwd());
@@ -106,21 +105,6 @@ public class RecvEmailServiceImp implements RecvEmailService {
 			}
 			folder.close(false);
 			store.close();
-		} catch (NoSuchProviderException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-
-		}
-
 	}
 
 	public static String getFrom(MimeMessage msg) throws MessagingException, UnsupportedEncodingException {

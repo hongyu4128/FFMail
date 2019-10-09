@@ -39,6 +39,5 @@
 		<module>recv</module>
 		<module>send</module>
 		<module>setting</module>
-		<module>basic</module>
 	</modules>
 </project>

@@ -39,7 +39,7 @@ public class UserEmailBasicInfoController {
         } catch (EmailNotExistsException e) {
             log.error(e.getMsg());
             return JsonInterfaceTool.fail(e.getMsg());
-        } catch (Exception e) {
+        }catch (Exception e) {
             log.error(e.getMessage());
             return JsonInterfaceTool.fail("抱歉,邮箱保存失败了");
         }
