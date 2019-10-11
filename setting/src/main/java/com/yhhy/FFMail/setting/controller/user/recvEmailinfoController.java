@@ -41,14 +41,16 @@ public class recvEmailinfoController {
       recvEmailService.recvEmail(emailInfo);
       return JsonInterfaceTool.succeed("收取简历成功");
     }catch(AuthenticationFailedException e) {
-      return JsonInterfaceTool.fail("用户名或密码错误");
+    	e.printStackTrace();
+      return JsonInterfaceTool.fail("用户名或者密码错误");
     }catch(NoSuchProviderException e) {
-    	log.error(e.getLocalizedMessage());
-    	return JsonInterfaceTool.fail(e.getLocalizedMessage());
+    	e.printStackTrace();
+    	return JsonInterfaceTool.fail("NoSuchProviderException");
     }
     catch(Exception e) {
     	log.error(null, e.getStackTrace());
-        return JsonInterfaceTool.fail(e.getStackTrace());
+    	e.printStackTrace();
+        return JsonInterfaceTool.fail(e.getLocalizedMessage());
     }
     
   }

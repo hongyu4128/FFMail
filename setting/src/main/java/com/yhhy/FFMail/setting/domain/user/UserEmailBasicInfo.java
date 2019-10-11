@@ -9,18 +9,27 @@ package com.yhhy.FFMail.setting.domain.user;
 
 public class UserEmailBasicInfo {
     private int userId;
+    private String recvServiceType;
     private String emailAddress;
     private String emailPwd;
     private String recvService;
-    private String recvPort;
+    public String getRecvServiceType() {
+		return recvServiceType;
+	}
+
+	public void setRecvServiceType(String recvServiceType) {
+		this.recvServiceType = recvServiceType;
+	}
+
+	private int recvPort;
     private String sendService;
-    private String sendPort;
+    private int sendPort;
 
     public UserEmailBasicInfo() {
     }
 
-    public UserEmailBasicInfo(int userId, String emailAddress, String emailPwd, String recvService, String recvPort,
-            String sendService, String sendPort) {
+    public UserEmailBasicInfo(int userId, String emailAddress, String emailPwd, String recvService, int recvPort,
+            String sendService, int sendPort) {
         this.setUserId(userId);
         this.setEmailAddress(emailAddress);
         this.setEmailPwd(emailPwd);
@@ -46,11 +55,11 @@ public class UserEmailBasicInfo {
         this.recvService = recvService;
     }
 
-    public String getRecvPort() {
+    public int getRecvPort() {
         return recvPort;
     }
 
-    public void setRecvPort(String recvPort) {
+    public void setRecvPort(int recvPort) {
         this.recvPort = recvPort;
     }
 
@@ -62,11 +71,11 @@ public class UserEmailBasicInfo {
         this.sendService = sendService;
     }
 
-    public String getSendPort() {
+    public int getSendPort() {
         return sendPort;
     }
 
-    public void setSendPort(String sendPort) {
+    public void setSendPort(int sendPort) {
         this.sendPort = sendPort;
     }
 

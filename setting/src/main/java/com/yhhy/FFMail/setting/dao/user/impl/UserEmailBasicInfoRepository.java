@@ -22,9 +22,9 @@ public class UserEmailBasicInfoRepository implements UserEmailBasicInfoDao {
   @Override
   public void saveUserEmail(UserEmailBasicInfo email) {
     // TODO Auto-generated method stub
-    String sql = "insert into T_SET_EMAIL_INFO (" + "USER_ID, EMAIL_ADDRESS," + "EMAIL_PASSWORD, EMAIL_RECVSERVICE,"
-        + "EMAIL_RECVPORT, EMAIL_SENDSERVICE," + "EMAIL_SENDPORT) values (?,?,?,?,?,?,?)";
-    jdbcTemplate.update(sql, new Object[] { email.getUserId(), email.getEmailAddress(), email.getEmailPwd(),
+    String sql = "insert into T_SET_EMAIL_INFO (" + "USER_ID, RECV_SERVICETYPE,EMAIL_ADDRESS," + "EMAIL_PASSWORD, EMAIL_RECVSERVICE,"
+        + "EMAIL_RECVPORT, EMAIL_SENDSERVICE," + "EMAIL_SENDPORT) values (?,?,?,?,?,?,?,?)";
+    jdbcTemplate.update(sql, new Object[] { email.getUserId(), email.getRecvServiceType(),email.getEmailAddress(), email.getEmailPwd(),
         email.getRecvService(), email.getRecvPort(), email.getSendService(), email.getSendPort() });
   }
 

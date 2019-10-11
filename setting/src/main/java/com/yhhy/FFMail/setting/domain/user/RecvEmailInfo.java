@@ -10,14 +10,14 @@ public class RecvEmailInfo {
 	private String emailContent;
 	private Date sendDate;
 	private Date recvDate;
-	private long uid;
+	private String uid;
 
-	public long getUid() {
+	public String getUid() {
 		return uid;
 	}
 
-	public void setUid(long uid) {
-		this.uid = uid;
+	public void setUid(String uid2) {
+		this.uid = uid2;
 	}
 
 	public RecvEmailInfo() {

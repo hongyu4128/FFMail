@@ -26,10 +26,6 @@ public class UserEmailBasicInfoServiceImpl implements UserEmailBasicInfoService 
     if (isExist) {
       throw new EmailNotExistsException(isExist);
     }
-    Boolean b = this.connectMail(email);
-    if (!b) {
-      throw new EmailNotExistsException(b);
-    }
     userEmailDao.saveUserEmail(email);
   }
 
@@ -41,20 +37,5 @@ public class UserEmailBasicInfoServiceImpl implements UserEmailBasicInfoService 
    * 邮箱校验
    * 
    */
-  private Boolean connectMail(UserEmailBasicInfo email) {
-    try {
-      Properties props = new Properties();
-      props.setProperty(email.getRecvService(), "true");
-      Session session = Session.getInstance(props, new Authenticator() {
-        @Override
-        public PasswordAuthentication getPasswordAuthentication() {
-          // 邮件服务器在外网
-          return new PasswordAuthentication(email.getEmailAddress(), email.getEmailPwd());
-        }
-      });
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
-  }
+ 
 }

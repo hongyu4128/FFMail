@@ -32,7 +32,7 @@ public class RecvEmailInfoRepository implements RecvEmailInfoDao{
 	 * 判断数据库中该邮箱是否已经收取过此uid对应的邮件，如果没有收取过返回返回false，反之返回true
 	 */
 	@Override
-	public boolean uidIsExists(String emailAddress,long uid) {
+	public boolean uidIsExists(String emailAddress,String uid) {
 		// TODO Auto-generated method stub
 		String sql = "select EMAIL_UID from T_RECV_EMAIL_INFO t where t.EMAIL_ADDRESS= ? and t.EMAIL_UID = ?";
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,
