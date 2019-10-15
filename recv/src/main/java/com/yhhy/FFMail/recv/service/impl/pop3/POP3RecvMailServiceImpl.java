@@ -13,10 +13,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.sun.mail.imap.IMAPFolder;
 import com.sun.mail.pop3.POP3Folder;
-import com.sun.mail.pop3.POP3Store;
 import com.yhhy.FFMail.recv.dao.RecvEmailDao;
 import com.yhhy.FFMail.recv.domain.RecvEmail;
 import com.yhhy.FFMail.recv.service.RecvEmailService;
@@ -25,6 +24,7 @@ import com.yhhy.FFMail.recv.utils.SSLUtil;
 import com.yhhy.FFMailBasic.basic.common.RemoveCryptographyRestrictions;
 import com.yhhy.FFMailBasic.basic.domain.user.email.UserEmailBasicInfo;
 
+@Service("POP3RecvEmailService")
 public class POP3RecvMailServiceImpl implements RecvEmailService {
 
     @Autowired
