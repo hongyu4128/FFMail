@@ -25,7 +25,7 @@ import com.yhhy.FFMailBasic.basic.domain.user.email.UserEmailBasicInfo;
  */
 
 @Controller
-@RequestMapping("/setting")
+@RequestMapping("/recv")
 public class recvEmailinfoController {
     private Logger log = LoggerFactory.getLogger(recvEmailinfoController.class);
 
