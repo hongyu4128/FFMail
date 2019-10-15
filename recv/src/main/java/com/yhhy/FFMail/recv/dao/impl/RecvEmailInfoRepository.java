@@ -1,4 +1,4 @@
-package com.yhhy.FFMail.setting.dao.user.impl;
+package com.yhhy.FFMail.recv.dao.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,20 +7,19 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
-import com.yhhy.FFMail.setting.dao.user.RecvEmailInfoDao;
-import com.yhhy.FFMail.setting.domain.user.RecvEmailInfo;
+import com.yhhy.FFMail.recv.dao.RecvEmailDao;
+import com.yhhy.FFMail.recv.domain.RecvEmail;
 
 @Repository("RecvEmailInfoDao")
-public class RecvEmailInfoRepository implements RecvEmailInfoDao{
+public class RecvEmailInfoRepository implements RecvEmailDao{
 	@Autowired
 	@Resource
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public void saveRecvEmailInfo(RecvEmailInfo recvemail) {
+	public void saveRecvEmail(RecvEmail recvemail) {
 		// TODO Auto-generated method stub
 		String sql = "insert into T_RECV_EMAIL_INFO (" + "EMAIL_UID,EMAIL_ADDRESS," + "EMAIL_FROM, EMAIL_SUBJECT,"
 				+ "EMAIL_SEND_TIME,EMAIL_RECV_TIME,"

@@ -1,9 +1,9 @@
-package com.yhhy.FFMail.setting.domain.user;
+package com.yhhy.FFMail.recv.domain;
 
 import java.util.Date;
 
 
-public class RecvEmailInfo {
+public class RecvEmail {
 	private String emailAddress;
 	private String emailFrom;
 	private String emailSubject;
@@ -20,7 +20,7 @@ public class RecvEmailInfo {
 		this.uid = uid2;
 	}
 
-	public RecvEmailInfo() {
+	public RecvEmail() {
 
 	}
 
@@ -40,7 +40,7 @@ public class RecvEmailInfo {
 		this.recvDate = recvDate;
 	}
 
-	public RecvEmailInfo(String emailAddress, String emailFrom, String emailSubject, String emailContent) {
+	public RecvEmail(String emailAddress, String emailFrom, String emailSubject, String emailContent) {
 		this.emailAddress = emailAddress;
 		this.emailFrom = emailFrom;
 		this.emailSubject = emailSubject;

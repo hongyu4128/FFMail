@@ -14,7 +14,6 @@
           <input type="password" placeholder="Password" class="m-input" v-model="password">
         </div>
       </div>
-      <p class="text-tips">免密码，点击登录按钮进入</p>
       <button class="m-btn sub select-none" @click.prevent="handleLogin" v-loading="isLoging">登录</button>
     </form>
     <div style="margin-top: 50px"></div>

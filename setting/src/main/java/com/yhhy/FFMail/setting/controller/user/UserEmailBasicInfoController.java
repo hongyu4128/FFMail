@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yhhy.FFMail.setting.common.bo.exceptions.emailinfo.EmailNotExistsException;
-import com.yhhy.FFMail.setting.domain.user.UserEmailBasicInfo;
 import com.yhhy.FFMail.setting.service.user.UserEmailBasicInfoService;
 import com.yhhy.FFMailBasic.basic.common.JsonInterfaceTool;
+import com.yhhy.FFMailBasic.basic.domain.user.email.UserEmailBasicInfo;
 
 /**
  * 和前端进行用户邮箱信息的交互
@@ -39,7 +39,7 @@ public class UserEmailBasicInfoController {
         } catch (EmailNotExistsException e) {
             log.error(e.getMsg());
             return JsonInterfaceTool.fail(e.getMsg());
-        }catch (Exception e) {
+        } catch (Exception e) {
             log.error(e.getMessage());
             return JsonInterfaceTool.fail("抱歉,邮箱保存失败了");
         }

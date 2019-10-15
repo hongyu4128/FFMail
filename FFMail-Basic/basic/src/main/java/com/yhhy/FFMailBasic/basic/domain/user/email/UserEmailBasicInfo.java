@@ -1,4 +1,4 @@
-package com.yhhy.FFMail.setting.domain.user;
+package com.yhhy.FFMailBasic.basic.domain.user.email;
 
 /**
  * 用户邮箱基本信息

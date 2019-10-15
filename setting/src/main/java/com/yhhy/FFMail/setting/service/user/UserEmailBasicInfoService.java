@@ -1,6 +1,6 @@
 package com.yhhy.FFMail.setting.service.user;
 
-import com.yhhy.FFMail.setting.domain.user.UserEmailBasicInfo;
+import com.yhhy.FFMailBasic.basic.domain.user.email.UserEmailBasicInfo;
 
 public interface UserEmailBasicInfoService {
   /**
