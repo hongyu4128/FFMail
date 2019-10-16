@@ -19,23 +19,26 @@ import javax.mail.internet.MimeUtility;
  *
  */
 public class MimeMessageUtil {
-    public static String getFrom(MimeMessage msg) throws MessagingException, UnsupportedEncodingException {
-        String from = "";
-        Address[] froms = msg.getFrom();
-        if (froms == null || froms.length < 1)
-            throw new MessagingException("没有发件人!");
-
-        InternetAddress address = (InternetAddress) froms[0];
-        String person = address.getPersonal();
-        if (person != null) {
-            person = MimeUtility.decodeText(person) + " ";
-        } else {
-            person = "";
-        }
-        from = person + "<" + address.getAddress() + ">";
-
-        return from;
-    }
+	public static String getFrom(MimeMessage msg) throws MessagingException, UnsupportedEncodingException {
+		  String from = "";
+		  InternetAddress address = null;
+		  Address[] froms = msg.getFrom();
+		  if (froms == null || froms.length < 1) {
+		   from = "<unknown@mail.com>";
+		   //throw new MessagingException("没有发件人!");
+		  }
+		  else {
+		   address = (InternetAddress) froms[0];
+		   String person = address.getPersonal();
+		   if (person != null) {
+		    person = MimeUtility.decodeText(person) + " ";
+		   } else {
+		    person = "";
+		   }
+		   from = person + "<" + address.getAddress() + ">";
+		  }
+		  return from;
+		 }
 
     /**
      * 获得邮件文本内容

@@ -39,18 +39,6 @@ public class POP3RecvMailServiceImpl implements RecvEmailService {
         POP3Folder inbox = null;
         Store store = null;
         // 连接邮件服务器的参数配置
-//      Properties props = new Properties();
-//      props.setProperty("mail.imap.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//      props.setProperty("mail.imajavap.socketFactory.fallback", "false");
-//      // 设置传输协议和端口
-//      props.setProperty("mail.store.protocol", "pop3");//协议
-//      props.setProperty("mail.pop3.port", "995");//端口
-//      props.setProperty("mail.pop3.host", "pop3.163.com");//pop3服务器
-        // 创建Session对象
-//      Session session = Session.getInstance(props);
-        // 打印session session.setDebug(true);
-        // pop3Store = (POP3Store) session.getStore(email.getRecvServiceType());
-//      store = session.getStore(email.getRecvServiceType());
         store = SSLUtil.getQQSSLStore(email);
         // 连接imap服务器
         store.connect("pop.qq.com", 995, email.getEmailAddress(), email.getEmailPwd());
