@@ -11,6 +11,16 @@ public class RecvEmail {
 	private Date sendDate;
 	private Date recvDate;
 	private String uid;
+	
+	public RecvEmail(String emailAddress, String emailFrom, String emailSubject, String emailContent, Date sendDate, Date recvDate, String uid) {
+		this.emailAddress = emailAddress;
+		this.emailFrom = emailFrom;
+		this.emailSubject = emailSubject;
+		this.emailContent = emailContent;
+		this.sendDate = sendDate;
+		this.recvDate = recvDate;
+		this.uid = uid;
+	}
 
 	public String getUid() {
 		return uid;
@@ -40,12 +50,7 @@ public class RecvEmail {
 		this.recvDate = recvDate;
 	}
 
-	public RecvEmail(String emailAddress, String emailFrom, String emailSubject, String emailContent) {
-		this.emailAddress = emailAddress;
-		this.emailFrom = emailFrom;
-		this.emailSubject = emailSubject;
-		this.emailContent = emailContent;
-	}
+
 
 	public String getEmailAddress() {
 		return emailAddress;

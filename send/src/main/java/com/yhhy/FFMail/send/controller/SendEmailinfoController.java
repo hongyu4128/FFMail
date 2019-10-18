@@ -1,4 +1,4 @@
-package com.yhyh.FFMail.send.controller;
+package com.yhhy.FFMail.send.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
+import com.yhhy.FFMail.send.domain.SendEmailinfo;
+import com.yhhy.FFMail.send.service.SendEmailService;
 import com.yhhy.FFMailBasic.basic.common.JsonInterfaceTool;
-import com.yhyh.FFMail.send.domain.SendEmail;
-import com.yhyh.FFMail.send.service.SendEmailService;
 
 /**
- * 进行邮箱收取的服务
+ * 进行邮箱发送的服务
  * 
  * @author Administrator
  *
@@ -27,13 +27,12 @@ public class SendEmailinfoController {
     private Logger log = LoggerFactory.getLogger(SendEmailinfoController.class);
 
     @Autowired
-    @Qualifier("sendEmailService")
     private SendEmailService sendEmailService;
 
 
     @ResponseBody
     @RequestMapping(value = "sendEmailInfo", method = RequestMethod.POST)
-    public JSONObject recvEmailInfo(@RequestBody SendEmail sendInfo) {
+    public JSONObject recvEmailInfo(@RequestBody SendEmailinfo sendInfo) {
         try {
                 sendEmailService.sendEmail(sendInfo);
             return JsonInterfaceTool.succeed("发送邮件成功");

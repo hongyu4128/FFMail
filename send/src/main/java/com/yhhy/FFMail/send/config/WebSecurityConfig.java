@@ -1,4 +1,4 @@
-package com.yhyh.FFMail.send.config;
+package com.yhhy.FFMail.send.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // 允许所有用户访问"/"和"/home"
-        http.authorizeRequests().antMatchers("/", "/recv").permitAll()
+        http.authorizeRequests().antMatchers("/", "/send").permitAll()
                 // 其他地址的访问均需验证权限
                 .anyRequest().authenticated().and().formLogin()
                 // 指定登录页是"/login"

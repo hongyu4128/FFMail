@@ -1,4 +1,4 @@
-package com.yhyh.FFMail.send.service.imp;
+package com.yhhy.FFMail.send.service.impl;
 /**
  * 发送邮件的服务，先判断是否连接成功，若没有先连接，已连接直接发送邮件
  * 判断连接的方法先写在这里，后面拆出来
@@ -14,15 +14,20 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.yhyh.FFMail.send.domain.SendEmail;
-import com.yhyh.FFMail.send.service.SendEmailService;
+
+import com.yhhy.FFMail.send.dao.SendEmailDao;
+import com.yhhy.FFMail.send.domain.SendEmailinfo;
+import com.yhhy.FFMail.send.service.SendEmailService;
 
 @Service("SendEmailService")
-public class SendEmailServiceImp implements SendEmailService {
-
+public class SendEmailServiceImpl implements SendEmailService {
+	@Autowired
+	private SendEmailDao sendEmailDao;
 	@Override
-	public void sendEmail(SendEmail sendInfo) throws Exception{
+	public void sendEmail(SendEmailinfo sendInfo) throws Exception{
 		// TODO Auto-generated method stub
 		 Properties pro = System.getProperties();
 	      pro.put("mail.smtp.host", "smtp.126.com");
@@ -54,7 +59,8 @@ public class SendEmailServiceImp implements SendEmailService {
 	      mailMessage.setText(sendInfo.getEmailContent());
 	      // 发送邮件
 	      Transport.send(mailMessage);
-	      
+	      sendEmailDao.saveSendEmail(sendInfo);
 	}
+	
 
 }
