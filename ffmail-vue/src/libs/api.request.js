@@ -1,7 +1,6 @@
+// const HttpRequest = require('@/libs/axios')
 import HttpRequest from '@/libs/axios'
-import config from '@/config'
-
-const baseUrl = config.baseUrl
+const baseUrl = process.env.APP_BASE_URL
 
 const axios = new HttpRequest(baseUrl)
 export default axios

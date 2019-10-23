@@ -4,5 +4,5 @@ const devEnv = require('./dev.env')
 
 module.exports = merge(devEnv, {
   NODE_ENV: '"testing"',
-  APP_BASE_URL: 'http://localhost:3001/remoteServer'
+  APP_BASE_URL: '"http://localhost:3001/remoteServer"'
 })

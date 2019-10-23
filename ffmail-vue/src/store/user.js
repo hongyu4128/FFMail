@@ -1,4 +1,5 @@
 // import Vue from 'vue'
+import {login} from '../api/common/user'
 
 const state = {
   user: null,
@@ -6,21 +7,16 @@ const state = {
 }
 
 const actions = {
-  async login ({commit}, user) {
-    commit('SET_DOING_LOGIN', true)
+  async login ({commit}, {user, password}) {
+    commit('', true)
     // 模拟登陆
-    var res = await new Promise((resolve, reject) => {
-      user.id = 1
-      user.nickName = '管理员'
-      sessionStorage.setItem('user', JSON.stringify(user))
-      setTimeout(() => {
-        resolve({bool: true, user})
-      }, 2000)
+    login({user, password}).then(res => {
+      commit('SET_LOGIN_USER', user)
+      commit('SET_LOGIN_TOKEN', '4eea90fd-2752-481d-ae67-c75f8641a94a')
+      commit('SET_DOING_LOGIN', false)
+    }).catch(() => {
+      this.$message.error('这是一个错误~~~~~')
     })
-    commit('SET_LOGIN_USER', user)
-    commit('SET_LOGIN_TOKEN', '4eea90fd-2752-481d-ae67-c75f8641a94a')
-    commit('SET_DOING_LOGIN', false)
-    return res
   },
   async getLoginUser ({commit}) {
     // 模拟请求用户信息

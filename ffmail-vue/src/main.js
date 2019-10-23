@@ -4,6 +4,7 @@ import Vue from 'vue'
 import 'babel-polyfill'
 import ElementUI from 'element-ui'
 import Axios from 'axios'
+import axios from '@/libs/api.request'
 import NProgress from 'nprogress'
 
 
@@ -54,6 +55,7 @@ Vue.use(MBackTop)
 Vue.use(MLoader)
 Vue.use(MContainer)
 
+Vue.prototype.axios = axios
 
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {

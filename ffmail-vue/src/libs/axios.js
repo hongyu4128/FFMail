@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-import store from '@/store'
+import store from '../store'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
@@ -14,7 +14,7 @@ const addErrorLog = errorInfo => {
 }
 
 class HttpRequest {
-  constructor (baseUrl = baseURL) {
+  constructor (baseUrl) {
     this.baseUrl = baseUrl
     this.queue = {}
   }
