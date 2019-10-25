@@ -2,7 +2,7 @@
 
 <configuration debug="false">
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_HOME" value="F://app/FFMailogs" />
+    <property name="LOG_HOME" value="F:\personal\FFMaillogs" />
 
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->

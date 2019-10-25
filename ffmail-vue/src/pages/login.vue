@@ -47,7 +47,7 @@ export default {
       }
       this.isLoging = true
       this.login({
-        username: this.username,
+        userName: this.username,
         password: this.password
       }).then(res => {
         this.$message.success('登录成功')
