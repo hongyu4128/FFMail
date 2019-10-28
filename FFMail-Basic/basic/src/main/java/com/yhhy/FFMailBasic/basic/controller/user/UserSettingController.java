@@ -20,7 +20,7 @@ import com.yhhy.FFMailBasic.basic.domain.user.User;
 import com.yhhy.FFMailBasic.basic.service.user.UserSettingService;
 
 @Controller
-@RequestMapping("/basic")
+@RequestMapping("/user")
 @Validated
 public class UserSettingController {
     private Logger log = LoggerFactory.getLogger(UserSettingController.class);
@@ -29,7 +29,7 @@ public class UserSettingController {
     private UserSettingService userSettingService;
 
     @ResponseBody
-    @RequestMapping(value = "register", method = RequestMethod.GET)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public JSONObject saveUser(@RequestBody @Valid User user) {
         try {
             userSettingService.register(user);

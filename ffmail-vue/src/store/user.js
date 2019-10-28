@@ -7,15 +7,19 @@ const state = {
 }
 
 const actions = {
-  async login ({commit}, {user, password}) {
+  async login ({commit}, {userName, password}) {
     commit('', true)
     // 模拟登陆
-    login({user, password}).then(res => {
-      commit('SET_LOGIN_USER', user)
-      commit('SET_LOGIN_TOKEN', '4eea90fd-2752-481d-ae67-c75f8641a94a')
-      commit('SET_DOING_LOGIN', false)
-    }).catch(() => {
-      this.$message.error('这是一个错误~~~~~')
+    return new Promise((resolve, reject) => {
+      login({userName, password}).then(res => {
+        // commit('SET_LOGIN_USER', userName)
+        // commit('SET_LOGIN_TOKEN', '4eea90fd-2752-481d-ae67-c75f8641a94a')
+        // commit('SET_DOING_LOGIN', false)
+        reject(new Error('假装报错了'))
+      }).catch(err => {
+        this.$message.error('这是一个错误~~~~~')
+        reject(err)
+      })
     })
   },
   async getLoginUser ({commit}) {
