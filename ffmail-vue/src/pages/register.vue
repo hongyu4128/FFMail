@@ -8,17 +8,16 @@
     <form action="" class="login-form">
       <div class="m-list-group">
         <div class="m-list-group-item">
-          <input type="text" placeholder="Username" class="m-input">
+          <input type="text" placeholder="Username" class="m-input" v-model="userName">
         </div>
         <div class="m-list-group-item">
-          <input type="email" placeholder="E-mail" class="m-input">
+          <input type="email" placeholder="Telephone" class="m-input" v-model="telephone">
         </div>
         <div class="m-list-group-item">
-          <input type="password" placeholder="Password" class="m-input">
+          <input type="password" placeholder="Password" class="m-input" v-model="password">
         </div>
-        
       </div>
-      <button class="m-btn sub select-none">注册</button>
+      <el-button class="m-btn sub select-none" @click.prevent="handleRegister" :loading="registerLoading">注册</el-button>
       <p class="text-tips">已经有账号？</p>
       <a href="/login" class="m-btn m-btn-text">登陆</a>
     </form>
@@ -26,8 +25,32 @@
 </div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 export default {
-  name: 'login'
+  name: 'login',
+  data () {
+    return {
+      registerLoading: false,
+      userName: '',
+      telephone: '',
+      password: ''
+    }
+  },
+  methods: {
+    ...mapActions(['register']),
+    handleRegister () {
+      console.debug(this.userName + ',' + this.telephone + ',' + this.password)
+      this.register({
+        userName: this.userName,
+        telephone: this.telephone,
+        password: this.password
+      }).then(res => {
+        this.$message.success('注册成功')
+      }).catch(err => {
+        this.$message.error(err)
+      })
+    }
+  }
 }
 </script>
 <style type="text/css">

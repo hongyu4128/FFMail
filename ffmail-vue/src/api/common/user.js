@@ -14,3 +14,19 @@ export const login = ({userName, password}) => {
     params: user
   })
 }
+
+export const register = ({userName, telephone, password}) => {
+  let user = {
+    userName: userName,
+    telephone: telephone,
+    password: password
+  }
+  return axios.request({
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: user,
+    url: 'basic/user/register'
+  })
+}

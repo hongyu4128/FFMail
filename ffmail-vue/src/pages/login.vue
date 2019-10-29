@@ -14,7 +14,9 @@
           <input type="password" placeholder="请输入密码" class="m-input" v-model="password">
         </div>
       </div>
-      <button class="m-btn sub select-none" @click.prevent="handleLogin" v-loading="isLoging">登录</button>
+      <el-button class="m-btn sub select-none" @click.prevent="handleLogin" :loading="loading">登陆</el-button>
+      <p class="text-tips">还没有账号？</p>
+      <el-button class="m-btn m-btn-text" @click.prevent="handleRegister" :loading="registerLoading">注册</el-button>
     </form>
     <div style="margin-top: 50px"></div>
     <p class="text-tips">
@@ -31,9 +33,10 @@ export default {
   name: 'login',
   data () {
     return {
-      username: 'Administrator',
-      password: '123456',
-      isLoging: false,
+      username: '',
+      password: '',
+      loading: false,
+      registerLoading: false,
       author: window.APP_INFO.author,
       version: window.APP_INFO.version,
       appName: window.APP_INFO.appName
@@ -45,15 +48,21 @@ export default {
       if (!this.username || !this.password) {
         return this.$message.warning('用户名和密码不能为空')
       }
-      this.isLoging = true
+      this.loading = true
       this.login({
-        userName: this.username,
+        userName: this.username.trim(),
         password: this.password
       }).then(res => {
         this.$message.success('登录成功')
         this.$router.push({name: 'home'})
-        this.isLoging = false
+        this.loading = false
       })
+    },
+    handleRegister () {
+      this.registerLoading = true
+      setTimeout(() => {
+        this.$router.push('/register')
+      }, 500)
     }
   }
 }

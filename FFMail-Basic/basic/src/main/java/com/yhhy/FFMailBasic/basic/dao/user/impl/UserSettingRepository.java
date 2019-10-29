@@ -16,47 +16,49 @@ import com.yhhy.FFMailBasic.basic.domain.user.User;
 
 @Repository("UserSettingDao")
 public class UserSettingRepository implements UserSettingDao {
-    private Logger log = LoggerFactory.getLogger(UserSettingRepository.class);
+  private Logger log = LoggerFactory.getLogger(UserSettingRepository.class);
 
-    @Autowired
-    @Resource
-    private JdbcTemplate jdbcTemplate;
+  @Autowired
+  @Resource
+  private JdbcTemplate jdbcTemplate;
 
-    @Override
-    // 判断数据库中是否有同样的数据,有就返回true,没有返回false
-    public Boolean queryUserIsExist(User u) {
-        String sql = "select USER_ID from T_SET_USER_INFO t where t.USER_NAME = ? or t.TELEPHONE = ?";
-        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,
-                new Object[] { u.getUserName(), u.getTelephone() });
-        if (list.isEmpty() == true)
-            return false;
-        else
-            return true;
+  @Override
+  // 判断数据库中是否有同样的数据,有就返回true,没有返回false
+  public Boolean queryUserIsExist(User u) {
+    String sql = "select USER_ID from T_SET_USER_INFO t where t.USER_NAME = ? or t.TELEPHONE = ?";
+    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, new Object[] { u.getUserName(), u.getTelephone() });
+    if (list.isEmpty() == true)
+      return false;
+    else
+      return true;
+  }
+
+  @Override
+  public void saveUserInfo(User u) {
+    String sql = "insert into T_SET_USER_INFO (USER_NAME, TELEPHONE, PASSWORD) values (?, ?, ?)";
+    jdbcTemplate.update(sql, new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
+  }
+
+  /**
+   * 登录时验证密码正确性的函数
+   */
+  @Override
+  public int checkPassword(User u) {
+    String sql = "select USER_ID from T_SET_USER_INFO t where (t.USER_NAME = ? or t.TELEPHONE = ?) and t.PASSWORD = ?";
+    List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,
+        new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
+
+    list.forEach(item -> {
+      String t = String.valueOf(item.get("USER_ID"));
+      log.debug(t);
+    });
+    if (list.isEmpty() == true)
+      return 0;
+    else {
+      u.setToken("abcde-12345-abcde-123456");
+      return 1;
     }
 
-    @Override
-    public void saveUserInfo(User u) {
-        String sql = "insert into T_SET_USER_INFO (USER_NAME, TELEPHONE, PASSWORD) values (?, ?, ?)";
-        jdbcTemplate.update(sql, new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
-    }
-
-    /**
-     * 登录时验证密码正确性的函数
-     */
-    @Override
-    public int checkPassword(User u) {
-        String sql = "select USER_ID from T_SET_USER_INFO t where (t.USER_NAME = ? or t.TELEPHONE = ?) and t.PASSWORD = ?";
-        List<Map<String, Object>> list = jdbcTemplate.queryForList(sql,
-                new Object[] { u.getUserName(), u.getTelephone(), u.getPassword() });
-
-        list.forEach(item -> {
-            String t = String.valueOf(item.get("USER_ID"));
-            log.debug(t);
-        });
-        if (list.isEmpty() == true)
-            return 0;
-        else
-            return 1;
-    }
+  }
 
 }

@@ -18,6 +18,8 @@ public class User {
   @Size(min = 8, max = 18, message = "密码长度为8-18位")
   private String password;
 
+  private String token;
+
   public User() {
 
   }
@@ -50,5 +52,13 @@ public class User {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 }
