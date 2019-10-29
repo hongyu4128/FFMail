@@ -8,10 +8,10 @@
     <form action="" class="login-form">
       <div class="m-list-group">
         <div class="m-list-group-item">
-          <input type="text" placeholder="Username" class="m-input" v-model="username">
+          <input type="text" placeholder="请输入用户名或者手机号" class="m-input" v-model="username">
         </div>
         <div class="m-list-group-item">
-          <input type="password" placeholder="Password" class="m-input" v-model="password">
+          <input type="password" placeholder="请输入密码" class="m-input" v-model="password">
         </div>
       </div>
       <button class="m-btn sub select-none" @click.prevent="handleLogin" v-loading="isLoging">登录</button>

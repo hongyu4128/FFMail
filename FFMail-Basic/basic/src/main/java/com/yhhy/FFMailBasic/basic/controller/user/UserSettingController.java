@@ -45,7 +45,7 @@ public class UserSettingController {
 
     // 用于登录
     @ResponseBody
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     public JSONObject userLogin(String userName, String password) {
         try {
             User user = new User(userName, userName, password);

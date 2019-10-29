@@ -6,7 +6,7 @@ export const login = ({userName, password}) => {
     password: password
   }
   return axios.request({
-    method: 'get',
+    method: 'post',
     headers: {
       'Content-Type': 'application/json'
     },

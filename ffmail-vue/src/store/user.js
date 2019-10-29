@@ -11,11 +11,17 @@ const actions = {
     commit('', true)
     // 模拟登陆
     return new Promise((resolve, reject) => {
-      login({userName, password}).then(res => {
-        // commit('SET_LOGIN_USER', userName)
-        // commit('SET_LOGIN_TOKEN', '4eea90fd-2752-481d-ae67-c75f8641a94a')
-        // commit('SET_DOING_LOGIN', false)
-        reject(new Error('假装报错了'))
+      login({
+        userName,
+        password
+      }).then(res => {
+        const ret = res.data
+        if (ret.succeed) {
+          commit(ret.data)
+          resolve(ret)
+        } else {
+          reject(new Error(ret.data))
+        }
       }).catch(err => {
         this.$message.error('这是一个错误~~~~~')
         reject(err)
