@@ -56,6 +56,10 @@ export default {
         this.$message.success('登录成功')
         this.$router.push({name: 'home'})
         this.loading = false
+      }).catch(err => {
+         console.log(err)
+         this.$message.warning(err.message)
+          this.loading = false
       })
     },
     handleRegister () {

@@ -26,15 +26,19 @@ import com.yhhy.FFMail.send.service.SendEmailService;
 public class SendEmailServiceImpl implements SendEmailService {
 	@Autowired
 	private SendEmailDao sendEmailDao;
+	@SuppressWarnings("static-access")
 	@Override
 	public void sendEmail(SendEmailinfo sendInfo) throws Exception{
 		// TODO Auto-generated method stub
 		 Properties pro = System.getProperties();
-	      pro.put("mail.smtp.host", "smtp.126.com");
-	      pro.put("mail.smtp.port", "25");
+		  pro.put("mail.transport.protocol", "smtp"); // 连接协议
+	      pro.put("mail.smtp.host", "smtp.qq.com");
+	      pro.put("mail.smtp.port", 465);
 	      pro.put("mail.smtp.auth", "true");
-
+	      pro.put("mail.smtp.ssl.enable", "true");  // 设置是否使用ssl安全连接 ---一般都使用
+	      pro.put("mail.debug", "true"); // 设置是否显示debug信息 true 会在控制台显示相关
 	      // 根据邮件会话属性和密码验证器构造一个发送邮件的session
+	 //     Session sendMailSession = Session.getInstance(pro);
 	      Session sendMailSession = Session.getDefaultInstance(pro,
 	            new Authenticator()
 	            {
@@ -55,10 +59,15 @@ public class SendEmailServiceImpl implements SendEmailService {
 	      mailMessage.setSubject(sendInfo.getEmailSubject());
 	      // 设置邮件消息发送的时间
 	      mailMessage.setSentDate(new Date());
+	      System.out.println(new Date());
 	      // 设置邮件消息的主要内容
 	      mailMessage.setText(sendInfo.getEmailContent());
+	      // 得到邮差对象
+	      Transport transport = sendMailSession.getTransport();
+	      //transport.connect(sendInfo.getEmailFrom(),"ovhkpakrkqwabege");
 	      // 发送邮件
-	      Transport.send(mailMessage);
+	     // transport.send(mailMessage);
+	      transport.send(mailMessage);
 	      sendEmailDao.saveSendEmail(sendInfo);
 	}
 	

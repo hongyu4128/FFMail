@@ -38,7 +38,7 @@ public class MimeMessageUtil {
 		   from = person + "<" + address.getAddress() + ">";
 		  }
 		  return from;
-		 }
+	}
 
     /**
      * 获得邮件文本内容

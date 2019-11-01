@@ -39,9 +39,10 @@ public class UserSettingServiceImpl implements UserSettingService {
         return u.getToken();
       }
     } catch (UserWrongPasswordException e) {
-      return "/login";
+    	throw new UserWrongPasswordException();
     }
-    return "/login";
+	return null;
+    
   }
 
   private Boolean checkPassword(User u) throws UserWrongPasswordException {

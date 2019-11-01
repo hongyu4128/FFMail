@@ -1,8 +1,8 @@
-// import Vue from 'vue'
 import {
   login,
   register
 } from '../api/common/user'
+
 
 const state = {
   user: null,
