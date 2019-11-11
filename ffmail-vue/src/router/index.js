@@ -15,7 +15,7 @@ export default new Router({
       path: '',
       component: AppView,
       children: [
-        {path: '/', name: 'home', component: Home},
+        {path: '/index', name: 'home', component: Home},
         {path: '/button', name: 'c-button', component: page('c-button')},
         {path: '/switch', name: 'c-switch', component: page('c-switch')},
         {path: '/checkbox', name: 'c-checkbox', component: page('c-checkbox')},

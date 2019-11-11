@@ -19,7 +19,7 @@
       </div>
       <el-button class="m-btn sub select-none" @click.prevent="handleRegister" :loading="registerLoading">注册</el-button>
       <p class="text-tips">已经有账号？</p>
-      <a href="/login" class="m-btn m-btn-text">登陆</a>
+      <a href="/login" class="m-btn m-btn-text" >登陆</a>
     </form>
   </div>
 </div>
@@ -40,14 +40,31 @@ export default {
     ...mapActions(['register']),
     handleRegister () {
       console.debug(this.userName + ',' + this.telephone + ',' + this.password)
+      if (!this.userName || !this.telephone || !this.password) {
+        return this.$message.warning('用户名,手机号和密码必填')
+      }
+      if ((this.userName.length > 10) || (this.userName.length < 6)) {
+        return this.$message.warning('用户名需要为6-10位')
+      }
+      if ((this.telephone.length !== 11)) {
+        return this.$message.warning('手机号需要为11位数字')
+      }
+      if ((this.password.length > 18) || (this.password.length < 8)) {
+        return this.$message.warning('密码需要为8-18位字符')
+      }
+      this.registerLoading = false
       this.register({
-        userName: this.userName,
-        telephone: this.telephone,
+        userName: this.userName.trim(),
+        telephone: this.telephone.trim(),
         password: this.password
       }).then(res => {
-        this.$message.success('注册成功')
+        this.$message.success('恭喜您注册成功,即将跳转到登录界面')
+        this.loading = true
+        setTimeout(() => {
+          this.$router.push('/login')
+        }, 1500)
       }).catch(err => {
-        this.$message.error(err)
+        this.$message.error(err.message)
       })
     }
   }

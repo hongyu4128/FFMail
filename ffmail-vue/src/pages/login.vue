@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
-    handleLogin () {
+    handleLogin: function () {
       if (!this.username || !this.password) {
         return this.$message.warning('用户名和密码不能为空')
       }
@@ -57,9 +57,9 @@ export default {
         this.$router.push({name: 'home'})
         this.loading = false
       }).catch(err => {
-         console.log(err)
-         this.$message.warning(err.message)
-          this.loading = false
+        console.log(err)
+        this.$message.warning(err.message)
+        this.loading = false
       })
     },
     handleRegister () {

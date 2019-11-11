@@ -11,10 +11,32 @@ const state = {
 
 const actions = {
   async login ({commit}, {userName, password}) {
+    // 登录方法
     commit('', true)
     return new Promise((resolve, reject) => {
       login({
         userName,
+        password
+      }).then(res => {
+        const ret = res.data
+        if (ret.succeed) {
+          commit('SET_LOGIN_TOKEN', ret.data)
+          resolve(ret)
+        } else {
+          reject(new Error(ret.data))
+        }
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  async register ({commit}, {userName, telephone, password}) {
+    // 注册方法
+    commit('', true)
+    return new Promise((resolve, reject) => {
+      register({
+        userName,
+        telephone,
         password
       }).then(res => {
         const ret = res.data
@@ -49,21 +71,6 @@ const actions = {
         commit('SET_LOGIN_USER', null)
         resolve({bool: true})
       }, 2000)
-    })
-  },
-  async register ({commit}, {userName, telephone, password}) {
-    return new Promise((resolve, reject) => {
-      register({userName, telephone, password}).then(res => {
-        const ret = res.data
-        if (ret.succeed) {
-          // this.$message({type: 'success', content: '注册成功, 正在自动登陆中...', duration: 5})
-          return this.login({commit}, {userName, password})
-        } else {
-          // this.$message({type: 'error', content: ret.data, duration: 5})
-        }
-      }).catch(err => {
-        reject(err)
-      })
     })
   }
 }
