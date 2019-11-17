@@ -1,28 +1,29 @@
 <template>
 <m-navbar :theme="theme.theme.headerTheme">
-  <m-navbar-brand>
-    <i class="side-switch"
-      :class="{
-        'el-icon-more': !mini,
-        'el-icon-more-outline': mini
-      }"
-      @click="handleSwitchSide"
-      ></i>
-  </m-navbar-brand>
+<!--  <m-navbar-brand>-->
+<!--    <i class="side-switch"-->
+<!--      :class="{-->
+<!--        'el-icon-more': !mini,-->
+<!--        'el-icon-more-outline': mini-->
+<!--      }"-->
+<!--      @click="handleSwitchSide"-->
+<!--      ></i>-->
+<!--  </m-navbar-brand>-->
   <m-nav>
-    <m-nav-item><a href="https://www.lanyueos.com" target="_blank">主页</a></m-nav-item>
-    <m-nav-item><a href="https://blog.lanyueos.com" target="_blank">博客</a></m-nav-item>
-    <m-nav-item><a href="https://www.lanyueos.com" target="_blank">关于</a></m-nav-item>
+    <m-nav-item>邮件信息</m-nav-item>
+<!--    <m-nav-item><a href="https://blog.lanyueos.com" target="_blank">博客</a></m-nav-item>-->
+<!--    <m-nav-item><a href="https://www.lanyueos.com" target="_blank">关于</a></m-nav-item>-->
   </m-nav>
   <m-nav align="right">
     <m-nav-item padding="0">
-      <a href="https://github.com/mengdu/vue-element-admin-tpl" target="_blank"><i class="fa fa-github" style="font-size: 26px;vertical-align: middle;"></i>&nbsp;Github</a>
-    </m-nav-item>
+   <i class="fa fa-github" style="font-size: 26px;vertical-align: middle;"></i>&nbsp;当前账号
+  </m-nav-item>
+
     <m-nav-item padding="0">
       <m-dropdown align="right" v-if="user" padding="0 10px">
         <a href="#" style="display: inline-block; padding: 0px; color: inherit">
           <img src="../assets/user.jpg" alt="" style="border-radius: 3px;vertical-align: middle;">
-          <span>{{user.username}}</span> 
+          <span>{{user.username}}</span>
           <span class="caret"></span>
         </a>
         <m-dropdown-panel>
@@ -34,6 +35,7 @@
         </m-dropdown-panel>
       </m-dropdown>
     </m-nav-item>
+
     <m-nav-item padding="0 5px">
       <a href="#" @click.stop.prevent="handleSwitchScreen">
         <i 
@@ -43,30 +45,17 @@
       </a>
     </m-nav-item>
 
-    <m-nav-item padding="0">
-      <m-dropdown align="right" padding="0 10px">
-        <a href="#"  style="padding:0 0px; color: inherit">
-          <i class="fa fa-gears"></i>
-        </a>
-        <m-dropdown-panel style="width: 200px; min-height: 100px;">
-          <el-form>
-            <el-form-item label="侧边栏">
-              <el-switch v-model="showAside" @change="handleSwitchHideSide" />
-            </el-form-item>
-            <el-form-item label="主题">
-              <el-select v-model="themeType" style="width: 100px">
-                <el-option
-                  v-for="theme in themes"
-                  :key="theme.label"
-                  :label="theme.label"
-                  :value="theme.name"
-                  ></el-option>
-              </el-select>
-            </el-form-item>
-          </el-form>
-        </m-dropdown-panel>
-      </m-dropdown>
-    </m-nav-item>
+    <el-dropdown>
+      <el-button type="primary">
+        个人中心<i class="el-icon-arrow-down el-icon--right"></i>
+      </el-button>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item>我的信息</el-dropdown-item>
+        <el-dropdown-item>我的邮箱</el-dropdown-item>
+        <el-dropdown-item>设置</el-dropdown-item>
+        <el-dropdown-item>退出</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </m-nav>
 </m-navbar>
 </template>

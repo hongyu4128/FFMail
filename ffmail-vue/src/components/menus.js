@@ -1,5 +1,25 @@
 const menus = [
-  {id: '0', label: '控制面板', path: '/', icon: 'fa fa-dashboard'},
+  {id: '0', label: '新建账号', name: 'create-account', icon: 'fa fa-dashboard'},
+  {
+    id: 'sentEmails',
+    icon: 'fa fa-sentEmail',
+    label: '我发送的'
+  },
+  {
+    id: 'markedEmails',
+    icon: 'fa fa-markedEmail',
+    label: '星标邮件'
+  },
+  {
+    id: 'draftBox',
+    icon: 'fa fa-draftBox',
+    label: '草稿箱'
+  },
+  {
+    id: 'junkEmails',
+    icon: 'fa fa-junkEmail',
+    label: '垃圾邮件'
+  },
   {
     id: 'components',
     icon: 'fa fa-microchip',

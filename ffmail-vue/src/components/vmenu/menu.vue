@@ -14,8 +14,8 @@
   @close="close"
   @select="select"
   >
-  <el-button @click.prevent="toRecvBox">收件箱</el-button>
-  <el-button>发件箱</el-button>
+  <el-button @click.prevent="toRecvBox">收信</el-button>
+  <el-button @click.prevent="toSendBox">写信</el-button>
   <template v-for="item in menus">
     <template v-if="isArr(item)">
     <el-menu-item-group
@@ -110,8 +110,11 @@ export default {
     select (index) {
       this.$emit('select', index)
     },
-    toRecvBox() {
-      this.$router.push('/recv-box')
+    toRecvBox () {
+      this.$router.push('@pages/views/recv-box')
+    },
+    toSendBox () {
+      this.$router.push('@pages/views/send-box')
     }
   }
 }

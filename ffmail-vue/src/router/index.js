@@ -29,7 +29,8 @@ export default new Router({
         {path: '/container', name: 'c-container', component: page('c-container')},
         {path: '/demo', name: 'demo', component: page('demo')},
         {path: '/404', name: '404', component: page('404')},
-        {path: '/500', name: '500', component: page('500')}
+        {path: '/500', name: '500', component: page('500')},
+        {path: '/create-account', name: 'create-account', component: page('views/create-account')}
       ]
     },
     {path: '/login', name: 'login', component: page('login')},
