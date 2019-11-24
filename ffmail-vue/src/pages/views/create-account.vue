@@ -45,7 +45,7 @@ export default {
         console.debug(res)
         // eslint-disable-next-line handle-callback-err
       }).catch(err => {
-
+        this.$message.warning(err.message)
       })
     }
   }

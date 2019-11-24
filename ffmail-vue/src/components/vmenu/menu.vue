@@ -14,8 +14,14 @@
   @close="close"
   @select="select"
   >
-  <el-button @click.prevent="toRecvBox">收信</el-button>
-  <el-button @click.prevent="toSendBox">写信</el-button>
+  <el-menu-item-group>
+    <el-menu-item>
+      <el-button class="el-button" icon="el-icon-edit" round  @click.prevent="toSendBox">写邮件</el-button>
+    </el-menu-item>
+    <el-menu-item>
+      <el-button class="el-button" icon="el-icon-message" round @click.prevent="toRecvBox">收邮件</el-button>
+    </el-menu-item>
+  </el-menu-item-group>
   <template v-for="item in menus">
     <template v-if="isArr(item)">
     <el-menu-item-group
@@ -114,7 +120,7 @@ export default {
       this.$router.push('@pages/views/recv-box')
     },
     toSendBox () {
-      this.$router.push('@pages/views/send-box')
+      this.$router.push({name: 'send-box'})
     }
   }
 }
@@ -127,7 +133,15 @@ export default {
     font-size: 15px;
     margin-right: 0px;
     display: inline-block;
-    width: 23px;
+    width: 20px;
+    text-align: center;
+    color: inherit;
+  }
+  .el-button{
+    font-size: 15px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    display: block;
     text-align: center;
     color: inherit;
   }

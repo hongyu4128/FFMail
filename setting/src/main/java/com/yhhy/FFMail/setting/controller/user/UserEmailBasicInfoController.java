@@ -25,13 +25,13 @@ import com.yhhy.FFMailBasic.basic.domain.user.email.UserEmailBasicInfo;
 @Controller
 @RequestMapping("/setting")
 public class UserEmailBasicInfoController {
-    private Logger log = LoggerFactory.getLogger(UserEmailBasicInfoController.class);
+  private Logger log = LoggerFactory.getLogger(UserEmailBasicInfoController.class);
 
-    @Autowired
-    private UserEmailBasicInfoService userEmailBasicInfoService;
+  @Autowired
+  private UserEmailBasicInfoService userEmailBasicInfoService;
 
-    @ResponseBody
-    @RequestMapping(value = "saveUserEmail", method = RequestMethod.POST)
+  @ResponseBody
+  @RequestMapping(value = "saveUserEmail", method = RequestMethod.POST)
     public JSONObject saveUserEmail(@RequestBody UserEmailBasicInfo email) {
         try {
             userEmailBasicInfoService.saveEmailInfo(email);
