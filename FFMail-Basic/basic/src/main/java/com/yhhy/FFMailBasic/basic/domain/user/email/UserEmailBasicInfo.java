@@ -13,15 +13,16 @@ public class UserEmailBasicInfo {
     private String emailAddress;
     private String emailPwd;
     private String recvService;
+
     public String getRecvServiceType() {
-		return recvServiceType;
-	}
+        return recvServiceType;
+    }
 
-	public void setRecvServiceType(String recvServiceType) {
-		this.recvServiceType = recvServiceType;
-	}
+    public void setRecvServiceType(String recvServiceType) {
+        this.recvServiceType = recvServiceType;
+    }
 
-	private int recvPort;
+    private int recvPort;
     private String sendService;
     private int sendPort;
 

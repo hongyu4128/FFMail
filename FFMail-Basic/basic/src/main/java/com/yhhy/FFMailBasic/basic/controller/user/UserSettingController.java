@@ -17,6 +17,7 @@ import com.yhhy.FFMailBasic.basic.bo.exceptions.user.UserNotExistsException;
 import com.yhhy.FFMailBasic.basic.bo.exceptions.user.UserWrongPasswordException;
 import com.yhhy.FFMailBasic.basic.common.JsonInterfaceTool;
 import com.yhhy.FFMailBasic.basic.domain.user.User;
+import com.yhhy.FFMailBasic.basic.domain.user.User.LoginType;
 import com.yhhy.FFMailBasic.basic.service.user.UserSettingService;
 
 @Controller
@@ -45,10 +46,10 @@ public class UserSettingController {
 
     // 用于登录
     @ResponseBody
-    @RequestMapping(value = "login", method = RequestMethod.POST)
+    @RequestMapping(value = "accountLogin", method = RequestMethod.POST)
     public JSONObject userLogin(String userName, String password) {
         try {
-            User user = new User(userName, userName, password);
+            User user = new User(LoginType.ACCOUNT, userName, password);
             return JsonInterfaceTool.succeed(userSettingService.login(user));
         } catch (UserNotExistsException | UserWrongPasswordException e) {
             e.printStackTrace();
@@ -60,5 +61,4 @@ public class UserSettingController {
             return JsonInterfaceTool.fail("登陆失败,我们正在处理哦");
         }
     }
-
 }

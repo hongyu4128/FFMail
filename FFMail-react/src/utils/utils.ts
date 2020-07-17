@@ -1,6 +1,7 @@
 import { parse } from 'querystring';
 import pathRegexp from 'path-to-regexp';
 import { Route } from '@/models/connect';
+import Cookies from 'react-cookies';
 
 /* eslint no-useless-escape:0 import/prefer-default-export:0 */
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
@@ -62,4 +63,23 @@ export const getRouteAuthority = (path: string, routeData: Route[]) => {
     }
   });
   return authorities;
+};
+
+const TOKEN_KEY = 'token';
+
+export const setToken = (token: string) => {
+  Cookies.save(TOKEN_KEY, token, { path: '/' });
+};
+
+export const getToken = () => {
+  const token:string = Cookies.load(TOKEN_KEY);
+  if (token) return token;
+  return '';
+};
+
+export const delToken = () => {
+  const token:string = Cookies.load(TOKEN_KEY);
+  if (token) {
+    Cookies.remove(TOKEN_KEY)
+  }
 };

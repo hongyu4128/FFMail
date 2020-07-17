@@ -1,37 +1,66 @@
-// https://eslint.org/docs/user-guide/configuring
-
 module.exports = {
-  root: true,
-  parser: 'babel-eslint',
-  parserOptions: {
-    sourceType: 'module'
+  extends: [require.resolve('@umijs/fabric/dist/eslint')],
+  globals: {
+    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: true,
+    page: true,
+    REACT_APP_ENV: true,
   },
-  env: {
-    browser: true,
-  },
-  // https://github.com/standard/standard/blob/master/docs/RULES-en.md
-  extends: 'standard',
-  // required to lint *.vue files
-  plugins: [
-    'html'
-  ],
-  // add your custom rules here
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    // allow async-await
-    'generator-star-spacing': 0,
-    // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    "no-unused-vars": ['warn', {
-      // 允许声明未使用变量
-      "vars": "local",
-      // 参数不检查
-      "args": "none"
+  rules: {
+    // 允许使用console日志
+    "no-console": "off",
+    // 禁止使用特殊空白符（比如全角空格），除非是出现在字符串、正则表达式或模版字符串中
+    'no-irregular-whitespace': [
+      'error',
+      {
+        skipStrings: true,
+        skipComments: false,
+        skipRegExps: true,
+        skipTemplates: true
+      }
+    ],
+    // @fixable 代码块如果在一行内，那么大括号内的首尾必须有空格，比如 function () { alert('Hello') }
+    'block-spacing': [
+      'error',
+      'always'
+    ],
+    // @fixable 逗号前禁止有空格，逗号后必须要有空格
+    'comma-spacing': [
+      'error',
+      {
+        'before': false,
+        'after': true
+      }
+    ],
+    // @fixable 函数名和执行它的括号之间禁止有空格
+    'func-call-spacing': [
+      'error',
+      'never'
+    ],
+    // @fixable 对象字面量只有一行时，大括号内的首尾必须有空格
+    'object-curly-spacing': [
+      'error',
+      'always',
+      {
+        arraysInObjects: true,
+        objectsInObjects: false
+      }
+    ],
+    // 允许悬空下划线
+    'no-underscore-dangle': "off",
+    // prefer-destructuring
+    "prefer-destructuring": ["error", {
+      "VariableDeclarator": {
+        "array": false,
+        "object": true
+      },
+      "AssignmentExpression": {
+        "array": false,
+        "object": true
+      }
+    }, {
+      "enforceForRenamedProperties": false
     }],
-    //空行最多不能超过100行
-    "no-multiple-empty-lines": ['warn', {"max": 100}],
-    //关闭禁止混用tab和空格
-    "no-mixed-spaces-and-tabs": ['warn']
+    // 允许++
+    'no-plusplus': "off"
   }
-}
+};

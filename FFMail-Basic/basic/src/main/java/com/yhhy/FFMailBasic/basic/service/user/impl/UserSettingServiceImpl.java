@@ -12,43 +12,42 @@ import com.yhhy.FFMailBasic.basic.service.user.UserSettingService;
 @Service("UserSettingService")
 public class UserSettingServiceImpl implements UserSettingService {
 
-  @Autowired
-  private UserSettingDao userSettingDao;
+    @Autowired
+    private UserSettingDao userSettingDao;
 
-  @Override
-  public void register(User u) throws UserNotExistsException {
-    Boolean isExist = this.userIsExist(u);
-    if (isExist) {
-      throw new UserNotExistsException(isExist);
+    @Override
+    public void register(User u) throws UserNotExistsException {
+        Boolean isExist = this.userIsExist(u);
+        if (isExist) {
+            throw new UserNotExistsException(isExist);
+        }
+        userSettingDao.saveUserInfo(u);
     }
-    userSettingDao.saveUserInfo(u);
-  }
 
-  private Boolean userIsExist(User u) {
-    return userSettingDao.queryUserIsExist(u);
-  }
+    private Boolean userIsExist(User u) {
+        return userSettingDao.queryUserIsExist(u);
+    }
 
-  @Override
-  public String login(User u) throws UserNotExistsException {
-    Boolean isExist = this.userIsExist(u);
-    if (!isExist) {
-      throw new UserNotExistsException(isExist);
+    @Override
+    public String login(User u) throws UserNotExistsException {
+        Boolean isExist = this.userIsExist(u);
+        if (!isExist) {
+            throw new UserNotExistsException(isExist);
+        }
+        try {
+            if (this.checkPassword(u)) {
+                return u.getToken();
+            }
+        } catch (UserWrongPasswordException e) {
+            throw new UserWrongPasswordException();
+        }
+        return null;
     }
-    try {
-      if (this.checkPassword(u)) {
-        return u.getToken();
-      }
-    } catch (UserWrongPasswordException e) {
-    	throw new UserWrongPasswordException();
-    }
-	return null;
-    
-  }
 
-  private Boolean checkPassword(User u) throws UserWrongPasswordException {
-    if (userSettingDao.checkPassword(u) == 0) {
-      throw new UserWrongPasswordException();
+    private Boolean checkPassword(User u) throws UserWrongPasswordException {
+        if (userSettingDao.checkPassword(u) == 0) {
+            throw new UserWrongPasswordException();
+        }
+        return true;
     }
-    return true;
-  }
 }
